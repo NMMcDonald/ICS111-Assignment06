@@ -11,20 +11,24 @@ public class Assignment06 {
     	
         Scanner scan = new Scanner(System.in);
         
+        boolean output= false;
+        String npassword = "";
+        		
         System.out.println("Type your current password: ");
         String next = scan.nextLine();
         
         if (next.contentEquals("ICS111")) {
         	System.out.println("Type a new password: ");
-        	String npassword = scan.nextLine();
+        	npassword = scan.nextLine();
         	System.out.println("Retype the new password: ");
         	String retype = scan.nextLine();
+        	output= passwordChecker(npassword, retype);
         }
         else {
         	System.out.println("Password not recognized.");
         }
        
-        if (passwordChecker.out == true) {
+        if (output == true) {
         	System.out.println("Your password was changed to: " + npassword);
         }
         else {
@@ -33,7 +37,7 @@ public class Assignment06 {
         scan.close();
     }
 
-private static boolean passwordChecker(String npassword, String retype) {
+public static boolean passwordChecker(String npassword, String retype) {
 	boolean out = false;
 	
 		if (!npassword.contentEquals(retype)) { //checking if the passwords don't match
@@ -45,7 +49,7 @@ private static boolean passwordChecker(String npassword, String retype) {
 		else if (npassword.contains(" ")) { //checking to see if the password contains any spaces
 			System.out.println("Your new password can not have spaces.");
 		}
-		else if (!npassword.contains("!") || (!npassword.contains("?")) || (!npassword.contains("$"))) { //checking to see if the password doesn't contain any special characters 
+		else if (!(npassword.contains("!") || npassword.contains("?") || npassword.contains("$"))) { //checking to see if the password doesn't contain any special characters 
 			System.out.println("Your password must contain ! or $ or ?.");
 		}
 		else {
@@ -54,5 +58,5 @@ private static boolean passwordChecker(String npassword, String retype) {
 		
 		return out;
 	}
-
+	
 }
